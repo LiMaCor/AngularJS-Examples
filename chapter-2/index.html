@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html lang="en" ng-app="app" ng-controller="AppCtrl">
 
 <!--
     Las versiones de AngularJS y Bootstrap son, respectivamente,
@@ -10,9 +10,10 @@
     <meta charset="utf-8">
     <title>Contacts Manager</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/controller.js"></script>
 </head>
 
 <body>
@@ -39,6 +40,87 @@
             </form>
         </div>
     </nav>
+
+    <!--
+        En el area del contenido hemos creado un botón
+        que tiene la directiva "ng-click". Con esta directiva pasada
+        como atributo le estamos indicando al botón que llame a la
+        función especificada: clickHandler(); la cual hemos definido
+        en nuestro controlador.
+    -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <button ng-click="clickHandler()">Click Me</button>
+            </div>
+
+            <!--
+                Con la directiva "ng-hide" podemos controlar si un
+                elemento de nuestro DOM está oculto o no. Esto es 
+                muy parecido a la función .hide() usada en jQuery.
+                
+            -->
+            <div ng-hide="isHidden">
+                Click the button above to toggle.
+            </div>
+
+            <!--
+                Con la directiva "ng-init" evaluamos una expresión que se da en el
+                ámbito o "scope" de nuestra aplicación y/o controlador.
+            -->
+            <div class="col-sm-6" ng-init="test = 'Hello, World'">
+                {{test}}
+            </div>
+
+            <!--
+                Con la directiva "ng-if" llamamos directamente a la
+                función/elemento que le pasamos como parámetro, sin que esta
+                tenga que estar a la espera de que ocurra ningún evento.
+                Si la función/elemento es llamada/o desde otra parte del DOM con
+                las directivas "ng-show" o "ng-hide", la directiva "ng-if" también
+                aplicará el mismo efecto de mostrar/ocultar.
+            -->
+            <div ng-if="!isHidden">
+                Click the button above to toggle.
+            </div>
+            <!--
+                La directiva "ng-repeat" nos permite iterar a través de listas o
+                arrays, sin necesidad de repetir código. Para ello le pasamos
+                nuestro array, que habremos declarado previamente en el ámbito o
+                "scope" de nuestro controlador, y le asignamos una variable, con la
+                cual accederemos a la propiedad que queramos de nuestro array.
+            -->
+            <ul>
+                <li ng-repeat="contact in contacts">
+                    {{contact.name}}
+                </li>
+            </ul>
+
+            <!--
+                La directiva "ng-class" nos permite establecer una clase a un elemento
+                del DOM en base al valor del modelo que le pasamos como parámetro.
+                Si el valor del modelo que especificamos es true, se aplicará la clase.
+                Por el contrario, si es false o indefinido, no se aplicará.
+
+                Actualizado: la directiva "ng-style" funciona casi de la misma forma
+                que la directiva "ng-class", con la diferencia que "ng-style" aplica
+                directamente un estilo css que se haya definido en el controlador,
+                en función del valor que posea el modelo pasado como parámetro,
+                si fuera necesario.
+            -->
+            <p ng-class="{'text-center': center, 'text-danger': error}" ng-style="styleDemo()">
+                Lorem ipsum dolor sit amet
+            </p>
+            <label>
+                <input type="checkbox" ng-model="center"> text- center
+            </label>
+            <label>
+                <input type="checkbox" ng-model="error"> text- danger
+            </label>
+            <label>
+                <input type="checkbox" ng-model="styler"> ng-style</label>
+        </div>
+    </div>
 </body>
 
 </html>
