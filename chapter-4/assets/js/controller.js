@@ -6,51 +6,26 @@
  *      $scope.name = "World";
  * }
  * 
- * A instanciarse de la manera indicada en el documento:
+ * A instanciarse de la manera indicada en el documento.
+ * 
+ * Actualizado: la estructura de los modulos en AngularJS es la
+ * siguiente:
+ * 
+ * - angular.module("app", []) => La función 'module' establece un módulo
+ *   que tendrá como nombre el primer parámetro que le pasemos, en este caso, app.
+ *   Los corchetes indican un array en el que se pueden especificar dependencias
+ *   que se pueden inyectar en el módulo, por ejemplo, 'ngRoute'.
+ * 
+ * - .controller("AppCtrl", function ($scope)) => El método '.controller()' nos
+ *   permite establecer controladores dentro del módulo, con los que podremos
+ *   gestionar el funcionamiento de nuestra aplicación.
+ * 
+ * Por defecto, cuando indicamos la directiva 'ng-app' sin pasar ningún parámetro,
+ * AngularJS establece un módulo que trae por defecto, permitiendonos ver fucionalidades
+ * básicas del core. Si quisieramos crear un controlador, tendríamos que crear un módulo
+ * y pasarlo como parámetro a la directiva 'ng-app'.
  */
 
 angular.module("app", []).controller("AppCtrl", function ($scope) {
 
-    /**
-     * Función que muestra una alerta en función de un
-     * evento dado. En este caso, pinchar sobre un botón.
-     * 
-     * Actualizado: ahora, la función clickHandler() cambia
-     * el valor para la directiva "ng-hide" de false a true.
-     */
-    $scope.clickHandler = function () {
-        $scope.isHidden = !$scope.isHidden;
-    };
-
-    /**
-     * Array de objetos en formato JSON, declarado en el ámbito o
-     * "scope" de nuestro controlador.
-     */
-    $scope.contacts = [
-        {
-            name: 'John Doe',
-            phone: '01234567890',
-            email: 'john@example.com'
-        },
-        {
-            name: 'Karan Bromwich',
-            phone: '09876543210',
-            email: 'karan@email.com'
-        }
-    ];
-
-    /**
-     * Función que comprueba el valor de la variable definida en el ámbito
-     * o "scope" de nuestro controlador, y aplica un estilo css completo
-     * si el valor es true. En caso contrario, no devolverá nada.
-     */
-    $scope.styleDemo = function () {
-        if (!$scope.styler) {
-            return;
-        }
-        return {
-            background: 'red',
-            fontWeight: 'bold'
-        };
-    };
 });
