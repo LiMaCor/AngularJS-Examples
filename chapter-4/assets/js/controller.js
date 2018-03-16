@@ -24,6 +24,15 @@
  * AngularJS establece un módulo que trae por defecto, permitiendonos ver fucionalidades
  * básicas del core. Si quisieramos crear un controlador, tendríamos que crear un módulo
  * y pasarlo como parámetro a la directiva 'ng-app'.
+ * 
+ * ========================================================================================
+ * 
+ * El servicio '$routeProvider' nos permite utilizar los métodos 'when' y 'otherwise'
+ * para establecer las rutas de nuestra aplicación. Dentro de método 'when'
+ * podemos establecer una vista (plantilla html) y un controlador que la gestionará.
+ * Si especificamos un controlador, tendremos que definirlo en nuestro módulo.
+ * Con el método 'otherwise' estableceremos la ruta a seguir por nuestra aplicación
+ * cuando esta no sepa que vista mostrar al usuario.
  */
 
 angular.module("app", ['ngRoute']).config(function($routeProvider){
@@ -36,5 +45,7 @@ angular.module("app", ['ngRoute']).config(function($routeProvider){
         templateUrl: 'assets/partials/add.html'
     })
 }).controller("indexCtrl", function($scope){
+
+}).controller("addCtrl", function($scope){
 
 });
