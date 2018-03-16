@@ -26,6 +26,9 @@
  * y pasarlo como parámetro a la directiva 'ng-app'.
  */
 
-angular.module("app", []).controller("AppCtrl", function ($scope) {
-
-});
+angular.module("app", ['ngRoute']).config(function($routeProvider){
+    $routeProvider.when('/', {
+        controller: 'indexCtrl',
+        templateUrl: 'assets/partials/index.html'
+    });
+})
