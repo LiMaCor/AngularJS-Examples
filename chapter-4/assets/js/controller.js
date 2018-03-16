@@ -30,5 +30,11 @@ angular.module("app", ['ngRoute']).config(function($routeProvider){
     $routeProvider.when('/', {
         controller: 'indexCtrl',
         templateUrl: 'assets/partials/index.html'
-    });
-})
+    })
+    .when('/add-contact', {
+        controller: 'addCtrl',
+        templateUrl: 'assets/partials/add.html'
+    })
+}).controller("indexCtrl", function($scope){
+
+});
